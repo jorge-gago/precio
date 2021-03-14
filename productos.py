@@ -57,7 +57,7 @@ class producto():
         self.nombre = extrac.nombre(self.data_url, self.page).strip()
 
     def foto_page(self):
-        foto_url = extrac.foto(self.data_url, self.page)[1:]
+        foto_url = extrac.foto(self.data_url, self.page)#[1:]
         #foto = pillow.imagen.open(foto_url, headers = hdr)
         #self.foto = foto
 
