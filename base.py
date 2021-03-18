@@ -22,16 +22,23 @@ def primera_llamada():
 def crear(obj):
 
     print(obj.nombre)
-    print(obj.nombre_pro)
+    print(obj.precios)
     print("------------------------")
 
+    info = ( obj.nombre_pro, obj.url_producto, obj.nombre, obj.foto, obj.deseado, obj.pre_min, obj.pre_max, str(obj.precios))
+
+    print(info[7])
+
     c, conn = ini()
-    c.execute("INSERT INTO producto VALUES ( obj.nombre_pro, obj.url_producto, obj.nombre, obj.foto, obj.deseado, obj.pre_min, obj.pre_max, obj.precios)".format (( obj.nombre_pro, obj.url_producto, obj.nombre, obj.foto, obj.deseado, obj.pre_min, obj.pre_max, obj.precios)))
+    c.execute("INSERT INTO producto (nombre_p, url, nombre, foto, deseado, pre_min, pre_max, precios) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", info)
     fin(conn)
 
 def editar(obj):
+    pos = obj.id_p
+    info = (obj.nombre , obj.deseado , pos)
+    
     c, conn = ini()
-    c.execute("UPDATE producto SET nombre = obj.nombre , deseado = obj.deseado   WHERE rowid = obj.id_p")
+    c.execute("UPDATE producto SET nombre = '{}', deseado = '{}' WHERE rowid ='{}'".format( info[0], info[1], info[2]))
     fin(conn)
 
 def eliminar(obj):
