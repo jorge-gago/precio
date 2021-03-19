@@ -28,7 +28,7 @@ def obj_info(base, produc):
 #componentes de datos productos
 def fot(base, produc):
     holder = tkinter.Frame( base, bg = "white")
-    holder.grid(row = 0, column = 0, columnspan = 2, sticky = "NSEW")
+    holder.grid(row = 0, column = 0, columnspan = 4, sticky = "NSEW")
     base.rowconfigure(0, weight = 1, minsize = 100)
     base.columnconfigure(0, weight = 1 )
     base.columnconfigure(1, weight = 1)
@@ -42,32 +42,29 @@ def fot(base, produc):
 
 def nombre_pro(base, produc):
     nom = tkinter.Label(base, text = "PRODUCTO")
-    nom.grid( row = 2, column = 0, columnspan = 2, sticky = "w")
+    nom.grid( row = 2, column = 0, columnspan = 4, sticky = "w")
 
     variable = tkinter.StringVar(base)
     variable.set(producto[0])
     lista = tkinter.OptionMenu(base, variable, *produc)
-    lista.grid( row = 3, column = 0, columnspan = 2, sticky = "ew")
+    lista.grid( row = 3, column = 0, columnspan = 4, sticky = "ew")
 
 def precios_pro(base, produc):
     precio_ac = tkinter.Label(base, text = "PRECIO")
-    precio_ac.grid(row = 4, column = 0, columnspan = 2, sticky = "w")
+    precio_ac.grid(row = 4, column = 0, columnspan = 4, sticky = "w")
 
     pre_act = tkinter.StringVar(base)#cambiar produc precio
     pre_act.set(produc[0])
     prel = tkinter.Label(base, textvariable = pre_act)
-    prel.grid(row = 5, column = 0, columnspan = 2, sticky ="w")
+    prel.grid(row = 5, column = 0, columnspan = 4, sticky ="w")
 
     deseo = tkinter.Label(base, text = "PRECIO DESEADO")
-    deseo.grid(row = 6, column = 0, columnspan = 2, sticky = "w")
+    deseo.grid(row = 6, column = 0, columnspan = 4, sticky = "w")
 
     des = tkinter.StringVar(base)
     des.set(produc[1])#cambiar llamada al producto
     desl = tkinter.Label(base, textvariable = des)
-    desl.grid(row = 7, column = 0, columnspan= 2, sticky = "w")
-
-def precios(base):
-    pass
+    desl.grid(row = 7, column = 0, columnspan= 4, sticky = "w")
 
 def botones(base, produc):
     bt1 = tkinter.Button(base, text="-act-")
@@ -75,7 +72,7 @@ def botones(base, produc):
     bt1.grid(row = 8, column = 0, sticky = "S")
     bt2.grid(row = 8, column = 1, sticky = "S")
 
-#cudros datos 
+#cuadros datos 
 def historico(base, valores):
     cuadro = tkinter.LabelFrame(base, padx = 5, pady = 5, bg = "green")
     cuadro.grid( row = 1, column = 0, sticky = "NSEW")

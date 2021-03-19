@@ -26,8 +26,10 @@ class producto():
         self.pre_max = "--.--"
         self.precios = [[ 0, 0]]
         self.page = ""
+        self.id_p = 0
 
-    def change(self): # llama los datos de base y los pasa a object
+
+    def change(self): # cambia los datos de object
         pass
 
     def  urls(self, url):

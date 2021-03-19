@@ -35,15 +35,17 @@ def crear(obj):
 
 def editar(obj):
     pos = obj.id_p
-    info = (obj.nombre , obj.deseado , pos)
+    des = obj.deseado
+    print(des , "  ", type(des), "<---------------------------------------")
+    info = (obj.nombre , des, pos)
     
     c, conn = ini()
-    c.execute("UPDATE producto SET nombre = '{}', deseado = '{}' WHERE rowid ='{}'".format( info[0], info[1], info[2]))
+    c.execute("UPDATE producto SET nombre = ?, deseado = ? WHERE rowid = ?", [info[0], info[1], int(info[2])])
     fin(conn)
 
 def eliminar(obj):
     c, conn = ini()
-    c.execute("DELETE FROM producto  WHERE rowid = obj.id_p")
+    c.execute("DELETE FROM producto  WHERE rowid = ?", [obj.id_p])
     fin(conn)
 
 def lista(): #devuelve todos los productos en la db
