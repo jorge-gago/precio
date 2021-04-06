@@ -31,6 +31,10 @@ if __name__ == "__main__":
     llamar()
     #nuevo()
 
+    new = lista_p[2]
+    obj.change(new)
+    print(obj.al())
+"""
     for i in lista_p:
         print(i)
     print("")
@@ -39,5 +43,7 @@ if __name__ == "__main__":
     print(new)
     obj.change(new)
     #print(obj.al())
-    
+
+
+   """ 
 

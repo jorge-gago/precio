@@ -20,14 +20,7 @@ def primera_llamada():
     fin(conn)
 
 def crear(obj):
-
-    print(obj.nombre)
-    print(obj.precios)
-    print("------------------------")
-
     info = ( obj.nombre_pro, obj.url_producto, obj.nombre, obj.foto, obj.deseado, obj.pre_min, obj.pre_max, str(obj.precios))
-
-    print(info[7])
 
     c, conn = ini()
     c.execute("INSERT INTO producto (nombre_p, url, nombre, foto, deseado, pre_min, pre_max, precios) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", info)

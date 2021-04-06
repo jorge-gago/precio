@@ -6,18 +6,12 @@ import base
 hdr = { 'User-Agent' : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"}
 
 
-def llamadas_url(url , headers = hdr):   
-    urls = req.get( url, headers = hdr )
-    data = urls.text
-
-    return data
-
 class producto():
 
     def __init__(self):
         self.nombre_pro = ""
-        self.url_producto = ""
-        self.data_url = ""
+        #self.url_producto = ""
+        #self.data_url = ""
         self.nombre = ""
         self.precio = "00.00"
         self.foto = ""
@@ -25,20 +19,25 @@ class producto():
         self.pre_min = "--.--"
         self.pre_max = "--.--"
         self.precios = [[ 0, 0]]
-        self.page = ""
+        self.urls = ""
+        #self.page = ""
         self.id_p = 0
 
-
-    def change(self): # cambia los datos de object
-        pass
-
-    def  urls(self, url):
-        self.url_producto = url
-        self.data_url = llamadas_url(self.url_producto)
-        self.page = extrac.web( url)
+    def change(self, data): # cambia los datos de object
+        print(data)
+        self.id_p = data[0]
+        self.nombre_pro = data[1]
+        self.nombre = data[3]
+        self.foto = data[4]
+        self.deseado = data[5]
+        self.pre_min = data[7]
+        self.pre_max = data[8]
+        self.precios = data[9]
+        self.urls = (data[2])
+        self.precio_page()
 
     def  precio_page(self):
-        self.precio = extrac.precio(self.data_url, self.page).replace(".", ",")
+        self.precio = extrac.llamadas_url(self.urls)[1]
         self.add_pre()
 
     def add_pre(self):
@@ -55,16 +54,19 @@ class producto():
       
         print(self.precios)
 
-    def  nombre_page(self):
-        self.nombre = extrac.nombre(self.data_url, self.page).strip()
+    def datos(self):
+        self.nombre, self.precio, foto_data = extrac.llamadas_url( self.urls)
+        self.foto_page(foto_data)
+        self.add_pre()
 
-    def foto_page(self):
-        foto_url = extrac.foto(self.data_url, self.page)#[1:]
-        #foto = pillow.imagen.open(foto_url, headers = hdr)
-        #self.foto = foto
+    def foto_page(self, data = 0):
+        if data:
+            pass
+        else:
+            self.foto = " "
 
     def al (self):
-        return self.page, self.url_producto, self.nombre, self.precio, self.deseado, self.pre_min, self.pre_max, self.precios, self.foto
+        return self.urls, self.nombre, self.precio, self.deseado, self.pre_min, self.pre_max, self.precios, self.foto
 
 
 
@@ -80,12 +82,11 @@ class producto():
 if __name__ == "__main__":
 
     prueba = producto()
-    prueba.urls('https://www.amazon.es/Moulinex-Multimoulinette-Compact-DJ300110-capacidad/dp/B00I96MAXC/ref=sr_1_50?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=moulinex&qid=1610394421&refinements=p_89%3AMoulinex&rnid=1692911031&s=kitchen&sr=1-50&th=1')
-    
-    prueba.precio_page()
-    prueba.precio_page()
-    prueba.nombre_page()
+    #prueba.urls('https://www.amazon.es/Moulinex-Multimoulinette-Compact-DJ300110-capacidad/dp/B00I96MAXC/ref=sr_1_50?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=moulinex&qid=1610394421&refinements=p_89%3AMoulinex&rnid=1692911031&s=kitchen&sr=1-50&th=1')
 
+    prueba.urls = 'https://www.amazon.es/Moulinex-Multimoulinette-Compact-DJ300110-capacidad/dp/B00I96MAXC/ref=sr_1_50?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=moulinex&qid=1610394421&refinements=p_89%3AMoulinex&rnid=1692911031&s=kitchen&sr=1-50&th=1'
+    
+    prueba.datos()
     for i in prueba.al():
         print(i)
 """
